@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * Script for running certain web request tests. Tests are defined in ./config.inc,
@@ -31,8 +30,8 @@ if (is_file(__DIR__ . '/vendor/autoload.php')) {
   exit(1);
 }
 
-use Behat\Mink\Driver\GoutteDriver;
-use Behat\Mink\Session;
+use \Behat\Mink\Driver\GoutteDriver;
+use \Behat\Mink\Session;
 
 require_once __DIR__ . '/config.inc';
 
