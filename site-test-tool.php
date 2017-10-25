@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Script for running certain web request tests. Tests are defined in ./config.inc,
@@ -21,11 +22,19 @@
  * particular test is skipped.
  */
 
+if (is_file(__DIR__ . '/vendor/autoload.php')) {
+  require __DIR__ . '/vendor/autoload.php';
+} elseif (is_file(__DIR__ . '/../../autoload.php')) {
+  require __DIR__ . '/../../autoload.php';
+} else {
+  echo 'Site-test-tool dependencies not found, be sure to run "composer install".' . PHP_EOL;
+  exit(1);
+}
+
 use Behat\Mink\Driver\GoutteDriver;
 use Behat\Mink\Session;
 
-require_once '../vendor/autoload.php';
-require_once 'config.inc';
+require_once __DIR__ . '/config.inc';
 
 /** @var GoutteDriver $driver */
 $driver = new GoutteDriver();

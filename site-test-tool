@@ -1,0 +1,4 @@
+#!/usr/bin/env php
+<?php
+
+require 'site-test-tool.php';

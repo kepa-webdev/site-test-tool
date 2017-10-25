@@ -13,5 +13,5 @@
         }
     ],
     "minimum-stability": "dev",
-    "bin": [ "kepa-site-tester.php" ]
+    "bin": [ "site-test-tool" ]
 }
