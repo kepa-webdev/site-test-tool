@@ -1,6 +1,7 @@
 {
     "name": "kepa/site-test-tool",
     "description": "Configurable site functionality tester, based on Mink",
+    "type": "project",
     "require": {
         "behat/mink": "^1.7",
         "behat/mink-goutte-driver": "^1.2"
