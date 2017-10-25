@@ -12,5 +12,6 @@
             "email": "jukka.huhta@kepa.fi"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "bin": [ "kepa-site-tester.php" ]
 }
