@@ -1,10 +1,8 @@
 <?php
 /**
- * Simple cript for running certain web request tests. 
+ * Simple script for running certain web request tests. 
  * 
  * See README.md for more.
- * 
-
  */
 
 if (is_file(__DIR__ . '/vendor/autoload.php')) {

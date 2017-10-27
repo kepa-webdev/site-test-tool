@@ -39,14 +39,14 @@ git clone https://github.com/kepa-webdev/site-test-tool
 composer install
 ```
 
-If you like to have it in Drupal project, go to the project 
+If you like to have it in a Drupal project, go to the project 
 root and call:
 ```
 composer require kepa-webdev/site-test-tool:* behat/mink behat/mink-goutte-driver
 ```
 
 Unfortunately composer might not necessarily get the dependencies so you might 
-need to require them explicitly. And of course, you need to add something like this
+need to require them explicitly (FIXME). And of course, you need to add something like this
 to your `repositories`:
 
 ```
