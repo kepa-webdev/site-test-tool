@@ -21,11 +21,19 @@
  * particular test is skipped.
  */
 
-use Behat\Mink\Driver\GoutteDriver;
-use Behat\Mink\Session;
+if (is_file(__DIR__ . '/vendor/autoload.php')) {
+  require __DIR__ . '/vendor/autoload.php';
+} elseif (is_file(__DIR__ . '/../../autoload.php')) {
+  require __DIR__ . '/../../autoload.php';
+} else {
+  echo 'Site-test-tool dependencies not found, be sure to run "composer install".' . PHP_EOL;
+  exit(1);
+}
 
-require_once '../vendor/autoload.php';
-require_once 'config.inc';
+use \Behat\Mink\Driver\GoutteDriver;
+use \Behat\Mink\Session;
+
+require_once __DIR__ . '/config.inc';
 
 /** @var GoutteDriver $driver */
 $driver = new GoutteDriver();
