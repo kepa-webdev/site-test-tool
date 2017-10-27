@@ -1,24 +1,10 @@
 <?php
 /**
- * Script for running certain web request tests. Tests are defined in ./config.inc,
- * config format as follows:
- *
-   $tests = [
-     [
-       'auth' => user/pass, // optional, or set to false to reset
-       'page' => 'https://foo/bar/baz', // required
-       'response_code' => 200, // optional, if not present, 200 used as default
-       'search' => '//*[@id="select-org-type"]/option[2]', // optional
-       'search_type' => 'xpath', // required if 'search' is present
-       'expected' => 'if (strlen($got) > 5) return TRUE;', // required if 'search' is present
-       'expected_type' => 'code', // optional, if present and value is 'code', 'expected' will be eval()'d,
-                                  // otherwise '!==' comparison will be done
-     ],
-   ];
- *
- * So it's possible to test only response code (default 200).
- * If we've gotten a response code other than expected, content test for that
- * particular test is skipped.
+ * Simple cript for running certain web request tests. 
+ * 
+ * See README.md for more.
+ * 
+
  */
 
 if (is_file(__DIR__ . '/vendor/autoload.php')) {
@@ -43,12 +29,14 @@ $session = new Session($driver);
 $failures = [];
 runTests($session, $tests);
 $session->stop();
+if (!isCli()) {
+  header("Content-type: text/plain");
+}
 if (empty($failures)) {
-  echo "OK";
+  printf("%s\n", "OK");
 }
 else {
-  echo "FAILURES: " . count($failures);
-  echo "\n\n";
+  printf("FAILURES: %d\n\n", count($failures));
   foreach ($failures as $failure) {
     echo $failure;
   }
@@ -100,8 +88,13 @@ function runTests($session, $tests) {
     $page = $session->getPage();
     /** @var \Behat\Mink\Element\NodeElement $response */
     $response = $page->find($test['search_type'], $test['search']);
-    $value = $response->getText();
-    test($test['page'], $test['expected'], $value, $test['expected_type']);
+    if (is_null($response)) {
+      fail($test['page'], 'some response', 'no response (i.e. no xpath found)');
+    }
+    else {
+      $value = $response->getText();
+      test($test['page'], $test['expected'], $value, $test['expected_type']);
+    }
   }
 }
 
@@ -114,5 +107,7 @@ function fail($page, $expected, $got) {
   );
 }
 
-
+function isCli() {
+  return php_sapi_name() === 'cli';
+}
 
