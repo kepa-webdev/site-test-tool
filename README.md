@@ -42,7 +42,7 @@ composer install
 If you like to have it in Drupal project, go to the project 
 root and call:
 ```
-composer require kepa/site-test-tool:* behat/mink behat/mink-goutte-driver
+composer require kepa-webdev/site-test-tool:* behat/mink behat/mink-goutte-driver
 ```
 
 Unfortunately composer might not necessarily get the dependencies so you might 
@@ -53,7 +53,7 @@ to your `repositories`:
 {
     "type": "package",
     "package": {
-        "name": "kepa/site-test-tool",
+        "name": "kepa-webdev/site-test-tool",
         "type": "php-library",
         "version": "<version>",
         "source": {

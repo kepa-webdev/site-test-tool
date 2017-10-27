@@ -1,5 +1,5 @@
 {
-    "name": "kepa/site-test-tool",
+    "name": "kepa-webdev/site-test-tool",
     "description": "Configurable site functionality tester, based on Mink",
     "type": "project",
     "require": {
